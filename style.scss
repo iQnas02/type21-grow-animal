@@ -23,10 +23,69 @@
   height: 150px;
   width: 150px;
   padding: 10px;
+  cursor: pointer;
+}
+.img150:hover{
+  background-color: red;
+  transform: scale(1.2);
+  transition-duration: 1.2s;
 }
 .imgDiv{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+}
+.visasPage{
+  flex-direction: column;
+}
+#selectedAnimal{
+  position: sticky;
+  top: 200px;
+}
+.gameBoard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 500px;
+}
+.buttonsControl{
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 400px;
+}
+.topBars{
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+  z-index: 1000;
+
+}
+.progress{
+  width: 300px;
+  margin: 30px;
+}
+.selected{
+  border: 2px solid red;
+}
+@keyframes spinning {
+  from {
+    transform: rotate(0deg) translateX(0) translateY(0);
+  }
+  to {
+    transform: rotate(360deg) translateX(100px) translateY(100px);
+  }
+}
+
+.spinning {
+  animation: spinning 10s linear;
+}
+#selectedAnimal{
+  display: flex;
+  justify-content: center;
 }
