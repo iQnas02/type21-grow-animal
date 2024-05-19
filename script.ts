@@ -1,6 +1,5 @@
-
 document.addEventListener("DOMContentLoaded", () => {
-    const animals = document.querySelectorAll(".img150");
+    const animals = document.querySelectorAll<HTMLImageElement>(".img150");
     const startButton = document.querySelector(".nextPageButton") as HTMLButtonElement;
     const backButton = document.querySelector(".backToPickAnimal") as HTMLButtonElement;
 
@@ -8,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animals.forEach(animal => {
         animal.addEventListener("click", () => {
-            selectedAnimal = (animal as HTMLImageElement).src;
-            animals.forEach(a => a.classList.remove('selected')); // Remove the red border from all animals
-            animal.classList.add('selected'); // Add the red border to the clicked animal
+            selectedAnimal = animal.src;
+            animals.forEach(a => a.classList.remove('selected'));
+            animal.classList.add('selected');
         });
     });
 
@@ -41,12 +40,24 @@ window.addEventListener("load", () => {
     const funBar = document.getElementById("fun") as HTMLProgressElement;
     const feedButton = document.getElementById("feedButton") as HTMLButtonElement;
     const funButton = document.getElementById("funButton") as HTMLButtonElement;
+    const gameMode = document.getElementById("gameMode") as HTMLSelectElement;
+    const activateGameModeButton = document.getElementById("activateGameModeButton") as HTMLButtonElement;
+
+    const healthPercent = document.getElementById("healthPercent") as HTMLElement;
+    const hungerPercent = document.getElementById("hungerPercent") as HTMLElement;
+    const funPercent = document.getElementById("funPercent") as HTMLElement;
+
+    function updateProgressBars() {
+        healthPercent.textContent = `${healthBar.value}%`;
+        hungerPercent.textContent = `${hungerBar.value}%`;
+        funPercent.textContent = `${funBar.value}%`;
+    }
 
     if (selectedAnimalSrc) {
         const selectedAnimalImg = document.createElement("img");
         selectedAnimalImg.src = selectedAnimalSrc;
         selectedAnimalImg.classList.add("img150");
-        selectedAnimalImg.id = "selectedAnimalImg"; // Add an ID for the selected animal image
+        selectedAnimalImg.id = "selectedAnimalImg";
         document.getElementById("selectedAnimal")?.appendChild(selectedAnimalImg);
         gameElement.style.display = "block";
         if (mainElement) {
@@ -58,33 +69,48 @@ window.addEventListener("load", () => {
     let health = 100;
     let fun = 100;
 
-
-    setInterval(() => {
+    function decrementValues() {
         hunger = Math.max(0, hunger - 1);
         if (hunger <= 95) {
-            health = Math.max(0, health - 1);
+            health = Math.max(0, health - 3);
         }
+        fun = Math.max(0, fun - 1);
         hungerBar.value = hunger;
         healthBar.value = health;
-    }, 10000); // 1 minute
+        funBar.value = fun;
+        updateProgressBars();
+    }
+
+    setInterval(decrementValues, 10000);
 
     feedButton?.addEventListener("click", () => {
-        hunger = Math.min(100, hunger + 20);
+        hunger = Math.min(100, hunger + 5);
         hungerBar.value = hunger;
+        updateProgressBars();
     });
 
     funButton?.addEventListener("click", () => {
-        health = Math.min(100, health + 5);
-        healthBar.value = health;
+        fun = Math.min(100, fun + 5);
+        funBar.value = fun;
+        updateProgressBars();
+    });
 
+    activateGameModeButton?.addEventListener("click", () => {
         const selectedAnimalImg = document.getElementById("selectedAnimalImg");
-        if (selectedAnimalImg) {
-            selectedAnimalImg.classList.add("spinning");
+        const mode = gameMode.value;
 
-            // Remove the spinning class after the animation ends to allow re-triggering
-            setTimeout(() => {
-                selectedAnimalImg.classList.remove("spinning");
-            }, 10000); // 2 seconds, same as the animation duration
+        if (selectedAnimalImg) {
+            selectedAnimalImg.classList.remove("spinning", "move-crazy", "jumping");
+
+            switch (mode) {
+                case "spin":
+                    selectedAnimalImg.classList.add("spinning");
+                    setTimeout(() => selectedAnimalImg.classList.remove("spinning"), 3000);
+                    break;
+
+            }
         }
     });
+
+    updateProgressBars();
 });

@@ -15,9 +15,6 @@
   align-items: center;
   width: 100%;
   max-width: 800px;
-
-
-
 }
 .img150{
   height: 150px;
@@ -58,6 +55,7 @@
 }
 .topBars{
   display: flex;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -70,22 +68,35 @@
   width: 300px;
   margin: 30px;
 }
+#health, #hunger, #fun{
+  height: 20px;
+}
+.yourAnimal{
+  position: sticky;
+  top: 450px;
+}
 .selected{
   border: 2px solid red;
-}
-@keyframes spinning {
-  from {
-    transform: rotate(0deg) translateX(0) translateY(0);
-  }
-  to {
-    transform: rotate(360deg) translateX(100px) translateY(100px);
-  }
 }
 
 .spinning {
   animation: spinning 10s linear;
 }
+.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 #selectedAnimal{
   display: flex;
   justify-content: center;
+}
+#healthPercent, #hungerPercent, #funPercent {
+  margin-left: 10px;
+  font-weight: bold;
 }
