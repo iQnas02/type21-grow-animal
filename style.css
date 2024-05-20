@@ -90,10 +90,6 @@
 }
 
 .spinning {
-  animation: spinning 10s linear;
-}
-
-.spinning {
   animation: spin 1s linear infinite;
 }
 
@@ -113,6 +109,19 @@
 #healthPercent, #hungerPercent, #funPercent {
   margin-left: 10px;
   font-weight: bold;
+}
+
+#levelDisplay {
+  position: sticky;
+  top: 100px;
+}
+
+.specialDiv {
+  background-image: url("https://t3.ftcdn.net/jpg/02/22/70/10/360_F_222701056_y9el4PKXN793mIaXs6EKmR5J46rjlbPa.jpg");
+  background-size: 1200px;
+  height: 100px;
+  width: 80px;
+  background-position: 0px 0;
 }
 
 /*# sourceMappingURL=style.css.map */

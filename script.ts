@@ -5,6 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let selectedAnimal: string | null = null;
 
+    const specialDiv=document.querySelector(".specialDiv") as HTMLDivElement;
+    let pos= 0
+    setInterval( ()=> {
+        specialDiv.style.backgroundPosition=`-${pos}px 0`
+        pos += 62
+        if(pos >= 125){
+            pos=0
+        }
+    }, 1000 )
+
+
+
     animals.forEach(animal => {
         animal.addEventListener("click", () => {
             selectedAnimal = animal.src;
@@ -100,7 +112,7 @@ window.addEventListener("load", () => {
         const mode = gameMode.value;
 
         if (selectedAnimalImg) {
-            selectedAnimalImg.classList.remove("spinning", "move-crazy", "jumping");
+            selectedAnimalImg.classList.remove("spinning");
 
             switch (mode) {
                 case "spin":
