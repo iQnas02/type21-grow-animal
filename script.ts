@@ -1,5 +1,6 @@
+
 document.addEventListener("DOMContentLoaded", () => {
-    const animals = document.querySelectorAll<HTMLImageElement>(".img150");
+    const animals = document.querySelectorAll<HTMLImageElement>(".img150, .specialDiv");
     const startButton = document.querySelector(".nextPageButton") as HTMLButtonElement;
     const backButton = document.querySelector(".backToPickAnimal") as HTMLButtonElement;
 
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animals.forEach(animal => {
         animal.addEventListener("click", () => {
-            selectedAnimal = animal.src;
+            selectedAnimal = animal.classList.contains('specialDiv') ? 'special' : animal.src;
             animals.forEach(a => a.classList.remove('selected'));
             animal.classList.add('selected');
         });
@@ -65,9 +66,14 @@ window.addEventListener("load", () => {
         funPercent.textContent = `${funBar.value}%`;
     }
 
+
     if (selectedAnimalSrc) {
         const selectedAnimalImg = document.createElement("img");
-        selectedAnimalImg.src = selectedAnimalSrc;
+        if (selectedAnimalSrc === 'special') {
+            selectedAnimalImg.src = "https://t3.ftcdn.net/jpg/02/22/70/10/360_F_222701056_y9el4PKXN793mIaXs6EKmR5J46rjlbPa.jpg"; // or any representative image for the special div
+        } else {
+            selectedAnimalImg.src = selectedAnimalSrc;
+        }
         selectedAnimalImg.classList.add("img150");
         selectedAnimalImg.id = "selectedAnimalImg";
         document.getElementById("selectedAnimal")?.appendChild(selectedAnimalImg);

@@ -4,8 +4,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 100vh
-
+  height: 100vh;
 }
 
 .container {
@@ -16,44 +15,52 @@
   width: 100%;
   max-width: 800px;
 }
-.img150{
+
+.img150 {
   height: 150px;
   width: 150px;
   padding: 10px;
   cursor: pointer;
 }
-.img150:hover{
+
+.img150:hover {
   background-color: red;
   transform: scale(1.2);
   transition-duration: 1.2s;
 }
-.imgDiv{
+
+.imgDiv {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
-.visasPage{
+
+.visasPage {
   flex-direction: column;
 }
-#selectedAnimal{
+
+#selectedAnimal {
   position: sticky;
   top: 200px;
 }
-.gameBoard{
+
+.gameBoard {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   height: 500px;
 }
-.buttonsControl{
+
+.buttonsControl {
   display: flex;
   justify-content: center;
   position: sticky;
   top: 400px;
 }
-.topBars{
+
+.topBars {
   display: flex;
   justify-content: center;
   position: fixed;
@@ -62,23 +69,25 @@
   width: 100%;
   background-color: #f0f0f0;
   z-index: 1000;
-
 }
-.progress{
+
+.progress {
   width: 300px;
   margin: 30px;
 }
-#health, #hunger, #fun{
+
+#health, #hunger, #fun {
   height: 20px;
 }
-.yourAnimal{
+
+.yourAnimal {
   position: sticky;
   top: 450px;
 }
-.selected{
+
+.selected {
   border: 2px solid red;
 }
-
 
 .spinning {
   animation: spin 1s linear infinite;
@@ -89,23 +98,27 @@
   100% { transform: rotate(360deg); }
 }
 
-
-#selectedAnimal{
+#selectedAnimal {
   display: flex;
   justify-content: center;
+
 }
+
 #healthPercent, #hungerPercent, #funPercent {
   margin-left: 10px;
   font-weight: bold;
 }
-#levelDisplay{
+
+#levelDisplay {
   position: sticky;
   top: 100px;
 }
-.specialDiv{
+
+.specialDiv {
   background-image: url("https://t3.ftcdn.net/jpg/02/22/70/10/360_F_222701056_y9el4PKXN793mIaXs6EKmR5J46rjlbPa.jpg");
   background-size: 1200px;
   height: 100px;
   width: 80px;
-  background-position:  0px 0;
+  background-position: 0px 0;
+  cursor: pointer;
 }
