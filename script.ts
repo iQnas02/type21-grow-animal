@@ -55,6 +55,7 @@ window.addEventListener("load", () => {
     const funButton = document.getElementById("funButton") as HTMLButtonElement;
     const gameMode = document.getElementById("gameMode") as HTMLSelectElement;
     const activateGameModeButton = document.getElementById("activateGameModeButton") as HTMLButtonElement;
+    const levelDisplay = document.getElementById("levelDisplay") as HTMLElement;
 
     const healthPercent = document.getElementById("healthPercent") as HTMLElement;
     const hungerPercent = document.getElementById("hungerPercent") as HTMLElement;
@@ -65,7 +66,22 @@ window.addEventListener("load", () => {
         hungerPercent.textContent = `${hungerBar.value}%`;
         funPercent.textContent = `${funBar.value}%`;
     }
+    let level = 1;
+    let animalSize = 150; // Initial size of the animal image
 
+    function updateLevelAndSize() {
+        level += 1;
+        levelDisplay.textContent = `Level: ${level}`;
+
+        animalSize += 1;
+        const selectedAnimalImg = document.getElementById("selectedAnimalImg") as HTMLImageElement;
+        if (selectedAnimalImg) {
+            selectedAnimalImg.style.width = `${animalSize}px`;
+            selectedAnimalImg.style.height = `${animalSize}px`;
+        }
+    }
+
+    setInterval(updateLevelAndSize, 3000);
 
     if (selectedAnimalSrc) {
         const selectedAnimalImg = document.createElement("img");
@@ -112,6 +128,11 @@ window.addEventListener("load", () => {
         funBar.value = fun;
         updateProgressBars();
     });
+    function increaseHealth() {
+        health = Math.min(100, health + 5);
+        healthBar.value = health;
+        updateProgressBars();
+    }
 
     activateGameModeButton?.addEventListener("click", () => {
         const selectedAnimalImg = document.getElementById("selectedAnimalImg");
@@ -128,6 +149,7 @@ window.addEventListener("load", () => {
 
             }
         }
+        increaseHealth();
     });
 
     updateProgressBars();

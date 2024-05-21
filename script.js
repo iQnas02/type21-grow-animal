@@ -49,6 +49,7 @@ window.addEventListener("load", () => {
     const funButton = document.getElementById("funButton");
     const gameMode = document.getElementById("gameMode");
     const activateGameModeButton = document.getElementById("activateGameModeButton");
+    const levelDisplay = document.getElementById("levelDisplay");
     const healthPercent = document.getElementById("healthPercent");
     const hungerPercent = document.getElementById("hungerPercent");
     const funPercent = document.getElementById("funPercent");
@@ -57,6 +58,19 @@ window.addEventListener("load", () => {
         hungerPercent.textContent = `${hungerBar.value}%`;
         funPercent.textContent = `${funBar.value}%`;
     }
+    let level = 1;
+    let animalSize = 150; // Initial size of the animal image
+    function updateLevelAndSize() {
+        level += 1;
+        levelDisplay.textContent = `Level: ${level}`;
+        animalSize += 1;
+        const selectedAnimalImg = document.getElementById("selectedAnimalImg");
+        if (selectedAnimalImg) {
+            selectedAnimalImg.style.width = `${animalSize}px`;
+            selectedAnimalImg.style.height = `${animalSize}px`;
+        }
+    }
+    setInterval(updateLevelAndSize, 3000);
     if (selectedAnimalSrc) {
         const selectedAnimalImg = document.createElement("img");
         if (selectedAnimalSrc === 'special') {
@@ -98,6 +112,11 @@ window.addEventListener("load", () => {
         funBar.value = fun;
         updateProgressBars();
     });
+    function increaseHealth() {
+        health = Math.min(100, health + 5);
+        healthBar.value = health;
+        updateProgressBars();
+    }
     activateGameModeButton === null || activateGameModeButton === void 0 ? void 0 : activateGameModeButton.addEventListener("click", () => {
         const selectedAnimalImg = document.getElementById("selectedAnimalImg");
         const mode = gameMode.value;
@@ -110,6 +129,7 @@ window.addEventListener("load", () => {
                     break;
             }
         }
+        increaseHealth();
     });
     updateProgressBars();
 });
